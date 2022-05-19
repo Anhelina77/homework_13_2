@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework_13</title>
+</head>
+<body>
+    <script>
+      function reverseNumber(value) {
+        let res = 0;
+        let number = typeof value === 'number' ? Math.abs(value) : 0;
+        while(number) {
+          res = (res * 10) + number % 10;
+          number = number / 10 | 0;
+        }
+        return res;
+      }
+      
+      function isPalindrom(value) {
+        let res = false;
+        if (typeof value === 'number' && Math.abs(value) === reverseNumber(value)) {
+          res = true;
+        }
+        return res;
+      }
+      
+      function summPalindrom(value) {
+        let steps = 0;
+        let result = typeof value === 'number' ? Math.abs(value) : 0;
+        if (result) {
+          while(!isPalindrom(result) && steps < 1000) {
+            result = result + reverseNumber(result);
+            steps++;
+          }
+        }
+        let resIsPalindrom = isPalindrom(result);
+        return {
+          result: resIsPalindrom ? result : 0,
+          steps: resIsPalindrom ? steps : 0
+        }
+      }
+      
+      console.log(summPalindrom(89))
+      </script>
+</body>
+</html>
